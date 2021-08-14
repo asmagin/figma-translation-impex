@@ -1,0 +1,41 @@
+@import url('figma-plugin-ds/dist/figma-plugin-ds.css');
+
+body {
+  padding: 5px;
+}
+.container {
+  display: flex; /* or inline-flex */
+  /* margin-bottom: 5px; */
+}
+.container > div {
+  padding: 3px;
+  flex: 1 1;
+}
+.container .fixed-large {
+  flex: 0 0;
+  flex-basis: 100px;
+}
+.container .fixed {
+  flex: 0 0;
+  flex-basis: 80px;
+}
+.container .fixed-small {
+  flex: 0 0;
+  flex-basis: 60px;
+}
+
+/* Figma overrides */
+.label {
+  color: var(--black8-opaque);
+}
+.select-menu__button {
+  border-color: var(--black3);
+}
+.select-menu__button:hover {
+  border-color: var(--black8);
+}
+i.source,
+i.target {
+  font-style: normal;
+  text-transform: lowercase;
+}

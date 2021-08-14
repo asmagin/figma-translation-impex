@@ -1,0 +1,7 @@
+{
+  "name": "Translation ImpEx",
+  "id": "1007441728108818097",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/index.html"
+}
