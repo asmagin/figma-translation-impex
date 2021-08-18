@@ -39,3 +39,6 @@ i.target {
   font-style: normal;
   text-transform: lowercase;
 }
+.textarea{
+  font-size: 8px;
+}

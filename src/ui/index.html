@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="fixed-large">
+    <div class="section-title">Language Configuration</div>
+  </div>
+  <div>
+    <select id="source" class="select-menu">
+      <option value="auto" selected>auto: Automatic</option>
+      <option value="ja">ja: Japanese</option>
+      <option value="en">en: English</option>
+    </select>
+  </div>
+  <div><div class="label">Current language of the page</div></div>
+  <div class="fixed">
+    <button id="export" class="button button--primary">Export</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="fixed-large"></div>
+  <div>
+    <select id="target" class="select-menu">
+      <option value="en" selected>en: English</option>
+      <option value="ja">ja: Japanese</option>
+    </select>
+  </div>
+  <div><div class="label">Target language for Translation</div></div>
+  <div class="fixed"></div>
+</div>
+<br />
+<div class="container">
+  <textarea
+    id="texts-area"
+    class="textarea"
+    rows="24"
+    placeholder="EXPORT & TRANSLATION results. JSON mapping between (source) and (target) languages"
+  ></textarea>
+</div>
+
+<div class="container">
+  <div>
+    <textarea
+      id="cache-by-hash"
+      class="textarea"
+      rows="16"
+      placeholder="CACHE: Hash-based transaltion cache (JSON-format)"
+    ></textarea>
+  </div>
+  <div>
+    <textarea
+      id="cache-by-id"
+      class="textarea"
+      rows="16"
+      placeholder="CACHE: Element ID-based transaltion cache (JSON-format)"
+    ></textarea>
+  </div>
+</div>
+
+<div class="container">
+  <div class="fixed-large"></div>
+  <div></div>
+  <div class="fixed-large">
+    <button id="translate" class="button button--secondary">
+      <span
+        >Translate (<i class="source">auto</i> → <i class="target">en</i>)</span
+      >
+    </button>
+  </div>
+  <div class="fixed-large">
+    <button id="load-source" class="button button--primary">
+      <span>Apply (<i class="source">auto</i>)</span>
+    </button>
+  </div>
+  <div class="fixed-large">
+    <button id="load-target" class="button button--primary">
+      <span>Apply (<i class="target">en</i>)</span>
+    </button>
+  </div>
+  <div class="fixed">
+    <button id="cancel" class="button button--primary-destructive">
+      Cancel
+    </button>
+  </div>
+</div>

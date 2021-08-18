@@ -1,6 +1,9 @@
-import "./styles.css";
+import { NETWORKING_REQUEST } from "../constants";
+import { processNetworkingRequest } from "./networking";
 
 import { selectMenu } from "figma-plugin-ds";
+
+import "./styles.css";
 
 selectMenu.init();
 
@@ -49,9 +52,9 @@ getButton("load-source").onclick = () => {
 };
 
 getButton("translate").onclick = () => {
-  const data = JSON.parse(getTextArea("texts-area").value || '{}');
-  const cacheByElementId = JSON.parse(getTextArea("cache-by-id").value || '{}');
-  const cacheBySourceHash = JSON.parse(getTextArea("cache-by-hash").value || '{}');
+  const data = JSON.parse(getTextArea("texts-area").value || "{}");
+  const cacheByElementId = JSON.parse(getTextArea("cache-by-id").value || "{}");
+  const cacheBySourceHash = JSON.parse(getTextArea("cache-by-hash").value || "{}");
   const source = getSelect("source").value || "ja";
   const target = getSelect("target").value || "en";
   parent.postMessage({ pluginMessage: { type: "translate", data, source, target, cacheByElementId, cacheBySourceHash } }, "*");
@@ -69,7 +72,19 @@ getButton("cancel").onclick = () => {
 
 onmessage = (event) => {
   const msg = event.data.pluginMessage;
+
+  if (msg.type === NETWORKING_REQUEST) {
+    console.log("[DEBUG][UI] onmessage", msg.data);
+    processNetworkingRequest(msg.data)
+  }
+
   if (msg.type === "export-texts:done") {
     getTextArea("texts-area").value = JSON.stringify(msg.data, null, 2);
+  }
+
+  if (msg.type === "translate-texts:done") {
+    getTextArea("texts-area").value = JSON.stringify(msg.data, null, 2);
+    getTextArea("cache-by-hash").value = JSON.stringify(msg.cacheBySourceHash, null, 2);
+    getTextArea("cache-by-id").value = JSON.stringify(msg.cacheByElementId, null, 2);
   }
 };

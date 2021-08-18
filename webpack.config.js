@@ -8,9 +8,13 @@ module.exports = (env, argv) => ({
   // This is necessary because Figma's 'eval' works differently than normal eval
   devtool: argv.mode === 'production' ? false : 'inline-source-map',
 
+  devServer: {
+    writeToDisk: true,
+  },
+
   entry: {
-    ui: './src/index.ts', // The entry point for your UI code
-    code: './src/code.ts', // The entry point for your plugin code
+    ui: './src/ui/index.ts', // The entry point for your UI code
+    code: './src/plugin/index.ts', // The entry point for your plugin code
   },
 
   module: {
@@ -31,17 +35,23 @@ module.exports = (env, argv) => ({
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     fallback: {
-      tls: false,
-      fs: false,
-      net: false,
-      "buffer": require.resolve("buffer/"),
-      "http": require.resolve("stream-http"),
-      "https": require.resolve("https-browserify"),
-      "stream": require.resolve("stream-browserify"),
-      "url": require.resolve("url/"),
-      "util": require.resolve("util/"),
+      // tls: false,
+      // fs: false,
+      // net: false,
+      // "buffer": require.resolve("buffer/"),
+      // "http": require.resolve("stream-http"),
+      // "https": require.resolve("https-browserify"),
+      // "stream": require.resolve("stream-browserify"),
+      // "url": require.resolve("url/"),
+      // "util": require.resolve("util/"),
     }
   },
+
+  optimization: {
+    minimize: argv.mode === 'production' ? true : false,
+  },
+
+  target: 'web',
 
   output: {
     publicPath: '/',
@@ -52,7 +62,7 @@ module.exports = (env, argv) => ({
   // Tells Webpack to generate "index.html" and to inline "index.ts" into it
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/ui/index.html',
       filename: 'index.html',
       inlineSource: '.(js)$',
       inject: 'body',

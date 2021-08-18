@@ -33,12 +33,20 @@ export const importTexts = (page, data, target) => {
     const text = texts[key];
     const newTextValue = data[key][target];
 
-    if (text && newTextValue && text.characters !== newTextValue) {
+    if (
+      text &&
+      newTextValue &&
+      text.characters !== newTextValue &&
+      text.characters.toLowerCase() !== newTextValue.toLowerCase()
+    ) {
       try {
         text.characters = newTextValue;
         console.info(`Element (${key}): Set to (${newTextValue})`);
       } catch (e) {
-        console.warn(`Element (${key}): Failed to set value (${newTextValue})`, e);
+        console.warn(
+          `Element (${key}): Failed to set value (${newTextValue})`,
+          e
+        );
         success = false;
       }
     } else {
@@ -49,10 +57,32 @@ export const importTexts = (page, data, target) => {
   return success;
 };
 
-export const tanslateTexts = (pageId, resources, sourceLanguage, targetLanguage, translatedBySourceHash, translatedByElementId) => {
-  console.log("tanslateTexts", pageId, resources, sourceLanguage, targetLanguage, translatedBySourceHash, translatedByElementId)
-  
-  const res = runTranslation(pageId, resources, sourceLanguage, targetLanguage, translatedBySourceHash, translatedByElementId);
+export const tanslateTexts = async (
+  pageId,
+  resources,
+  sourceLanguage,
+  targetLanguage,
+  translatedBySourceHash,
+  translatedByElementId
+) => {
+  console.log(
+    "tanslateTexts",
+    pageId,
+    resources,
+    sourceLanguage,
+    targetLanguage,
+    translatedBySourceHash,
+    translatedByElementId
+  );
+
+  const res = await runTranslation(
+    pageId,
+    resources,
+    sourceLanguage,
+    targetLanguage,
+    translatedBySourceHash,
+    translatedByElementId
+  );
   return res;
 };
 

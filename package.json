@@ -23,16 +23,10 @@
     "webpack-cli": "^4.7.2"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "babel-loader": "^8.2.2",
-    "buffer": "^6.0.3",
+    "@asmagin/google-translate-api": "^8.0.2",
     "figma-plugin-ds": "^1.0.1",
-    "https-browserify": "^1.0.0",
     "md5": "^2.3.0",
     "querystring": "^0.2.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "url": "^0.11.0",
-    "util": "^0.12.4"
+    "uuid": "^8.3.2"
   }
 }

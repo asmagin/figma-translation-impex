@@ -4,5 +4,5 @@
     "moduleResolution": "node",
     "lib": ["es2016", "dom"],
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
-  }
+  },
 }
